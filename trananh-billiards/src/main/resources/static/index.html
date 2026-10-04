@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Trần Anh Billiards</title>
+</head>
+
+<body>
+    <h1>Danh sách sản phẩm Trần Anh Billiards</h1>
+
+    <!-- Đây là "cái rổ" trống để chờ dữ liệu từ API đổ vào -->
+    <ul id="danh-sach-san-pham">
+        <li>Đang tải dữ liệu...</li>
+    </ul>
+
+    <!-- Viết mã JavaScript ở ngay trước thẻ đóng body -->
+    <script>
+        // 1. Dùng fetch gọi đúng đường dẫn GET mà bạn đã thiết lập trong Controller
+        fetch('/api/products')
+
+            // 2. Ép kiểu gói dữ liệu trả về thành định dạng JSON
+            .then(response => response.json())
+
+            // 3. Bắt đầu xử lý mảng dữ liệu (data)
+            .then(data => {
+                // Tìm "cái rổ" thông qua ID đã đặt ở trên HTML
+                const container = document.getElementById('danh-sach-san-pham');
+
+                // Xóa dòng chữ "Đang tải dữ liệu..." đi
+                container.innerHTML = '';
+
+                // Duyệt qua từng sản phẩm trong mảng
+                data.forEach(product => {
+                    // Tạo chuỗi HTML chứa thông tin (sử dụng dấu backtick ` ` để truyền biến)
+                    const htmlString = `
+                <li>
+                    <strong>Tên:</strong> ${product.name} 
+                    - <strong>Giá:</strong> ${product.price.toLocaleString('vi-VN')} VNĐ
+                </li>
+            `;
+
+                    // Cộng dồn chuỗi HTML đó vào trong rổ
+                    container.innerHTML += htmlString;
+                });
+            })
+
+            // 4. Bắt lỗi (In ra console nếu API bị sập hoặc gõ sai URL)
+            .catch(error => {
+                console.error('Lỗi khi tải danh sách sản phẩm:', error);
+                document.getElementById('danh-sach-san-pham').innerHTML = '<li>Lỗi kết nối máy chủ!</li>';
+            });
+    </script>
+</body>
+
+</html>
