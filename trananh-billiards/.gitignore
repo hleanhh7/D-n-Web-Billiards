@@ -32,5 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 
-00-so-tay-ghi-chep.md
-01-dinh-huong-va-nghiep-vu.md
+docs/
