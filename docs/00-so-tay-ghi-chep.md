@@ -40,4 +40,11 @@ Khi Client gửi một yêu cầu tạo sản phẩm:
 
 6. Controller biến ProductResponse thành JSON và gửi về cho Client.
 
-## password PostgreSQL: anh12345;  port: 2706
+## 2. Kết nối PostgreSQL khi chạy trên máy cá nhân
+
+- Cổng mặc định của dự án: `2706`.
+- Tên cơ sở dữ liệu: `trananh_billiards`.
+- Mật khẩu được truyền bằng biến môi trường `DB_PASSWORD`; không ghi mật khẩu vào mã nguồn hoặc tài liệu.
+- Hướng dẫn tạo bảng, dữ liệu mẫu và chạy ứng dụng: [README](../README.md).
+
+Mật khẩu từng được ghi trong lịch sử Git. Nếu đó là mật khẩu đang sử dụng, hãy đổi trong PostgreSQL rồi dùng mật khẩu mới khi chạy ứng dụng. Xóa dòng ghi chép không xóa mật khẩu khỏi lịch sử commit.

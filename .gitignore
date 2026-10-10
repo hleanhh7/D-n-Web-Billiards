@@ -1,0 +1,5 @@
+# Machine-specific editor settings and local credentials
+.vscode/
+.env
+.env.*
+!.env.example

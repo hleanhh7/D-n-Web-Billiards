@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -13,15 +15,6 @@ import jakarta.persistence.Table;
 
 
 public class Product {
-    // private int id;
-    // private String name;
-    // private double price;
-
-    // public Product(int id, String name, double price) {
-    //     this.id = id;
-    //     this.name = name;
-    //     this.price = price;
-    // } Bị thay thế để kết nối với SQL
 
     // Cứ mỗi trước khi khai báo biến phải khai báo trong DB nó có dạng gì
     @Id // khóa chính 
@@ -33,6 +26,10 @@ public class Product {
 
     @Column (name = "price")
     private Long price;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     protected Product(){
         // JPA cần constructor không tham số
@@ -60,5 +57,14 @@ public class Product {
 
     public void setPrice(Long price) {
         this.price = price;
+    }
+
+    //getter and setter about category
+    public Category getCategory() {
+    return category;
+    }
+
+    public void setCategory(Category category) {
+    this.category = category;
     }
 }
