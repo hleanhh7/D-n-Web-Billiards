@@ -21,8 +21,9 @@ public class ProductController {
     }
 
     @GetMapping("/api/products")
-    public List<Product> listProducts() {
-        return productService.getProducts();
+    public List<Product> listProducts(
+        @RequestParam(name = "categoryId", required = false) Long categoryId){
+            return productService.getProducts(categoryId);
     }
 
     @GetMapping("/api/products/{id}")

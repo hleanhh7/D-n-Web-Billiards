@@ -17,12 +17,17 @@ public class ProductService {
         this.productRepository = productRepository;
     } 
 
-    public List<Product> getProducts(){
-        return productRepository.findAll();
+    public List<Product> getProducts(Long categoryId){
+        if(categoryId == null){
+            return productRepository.findByActiveTrue();
+        }
+
+        return productRepository.findByCategory_IdAndActiveTrue(categoryId);
+
     }
 
     public Product getProductById(Long id){
-        return productRepository.findById(id)
+        return productRepository.findByIdAndActiveTrue(id)
                 .orElseThrow(() -> new ResponseStatusException(
                     HttpStatus.NOT_FOUND,
                 "Not found has id" + id
